@@ -1,3 +1,38 @@
-#root {
-  background-color: white;
+.login {
+  background-color: #42b5e8;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.login-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 10em;
+  width: auto;
+}
+
+.login-title {
+  text-align: center;
+  color: white;
+}
+
+.is-danger.input,
+.is-danger.textarea {
+  border: 3px solid #f14668;
+}
+
+.is-success.input, .is-success.textarea {
+  border: 3px solid #48c78e;
+}
+
+.green-validation {
+  color: #48c78e
+}
+
+.red-validation {
+  color: #f14668;
 }
