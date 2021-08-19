@@ -1,7 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import logo from '../images/logo-white.png';
+import { getUser } from '../redux/actions';
 
-const Home = () => {
+const Home = ({ getUser, user }) => {
+  const showError = () => {
+    document.getElementById('login-notification-bad').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('login-notification-bad').style.display = 'none';
+    }, 3000);
+  };
+  if (user.status === true && user.id === 0) {
+    showError();
+  } else if (user.status === true && user.id !== 0) {
+    document.getElementById('login-notification-good').style.display = 'block';
+    const history = useHistory();
+    history.push('/list');
+  }
+  console.log(user);
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
@@ -38,12 +56,27 @@ const Home = () => {
   };
   const submitForm = (e) => {
     console.log('enterUser');
-    console.log(e);
+    console.log(e.target.email.value);
+    console.log(e.target.password.value);
+    e.preventDefault();
+    const loginInfo = getUser(e.target.email.value, e.target.password.value);
+    console.log(loginInfo);
   };
   return (
     <div className="columns login">
       <div className="column is-flex is-justify-content-center">
         <section className="section">
+          <div className="notification is-danger" id="login-notification-bad">
+            It looks like you&apos;ve a trouble with your credentials,
+            <strong>
+              would you try again?
+            </strong>
+          </div>
+          <div className="notification is-success" id="login-notification-good">
+            <strong>
+              Done!
+            </strong>
+          </div>
           <img src={logo} alt="logo" className="login-logo" />
           <h1 className="title login-title">
             Track water
@@ -87,4 +120,22 @@ const Home = () => {
   );
 };
 
-export default Home;
+Home.propTypes = {
+  getUser: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    username: PropTypes.string,
+    token: PropTypes.string,
+    status: PropTypes.bool,
+  }).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+const mapDistpachToProps = {
+  getUser,
+};
+
+export default connect(mapStateToProps, mapDistpachToProps)(Home);

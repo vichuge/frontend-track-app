@@ -7,6 +7,14 @@
   left: 0px;
 }
 
+#login-notification-bad {
+  display: none;
+}
+
+#login-notification-good {
+  display: none;
+}
+
 .login-logo {
   display: block;
   margin-left: auto;
