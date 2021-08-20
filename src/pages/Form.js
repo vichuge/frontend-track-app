@@ -1,6 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import { addRecord } from '../redux/actions';
+import NavBar from '../components/NavBar';
 
-const Form = () => {
+const Form = ({ addRecord, form }) => {
+  const history = useHistory();
+  const { id } = useParams();
+  if (form.status === true) {
+    document.getElementById('form-notification-good').style.display = 'block';
+    history.push('/list');
+    // setTimeout(() => {}, 10000);
+  }
+  if (form.list === 'error') {
+    document.getElementById('form-notification-bad').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('form-notification-bad').style.display = 'none';
+    }, 3000);
+  }
+  if (localStorage.length === 0) useHistory().push('/logout');
   const validateTimes = (times) => {
     const re = /^[1-4][0-9]?$/;
     return re.test(times);
@@ -22,12 +41,14 @@ const Form = () => {
   };
   const submitForm = (e) => {
     e.preventDefault();
-    console.log('hi');
+    const times = e.target.times.value;
+    addRecord(id, times);
   };
   return (
     <>
+      <NavBar />
       <div className="notification is-danger" id="form-notification-bad">
-        It looks like we&apos;ve a problem with the API service
+        It looks like we&apos;ve a problem with the API service&nbsp;
         <strong>
           would you try again?
         </strong>
@@ -64,4 +85,23 @@ const Form = () => {
   );
 };
 
-export default Form;
+Form.propTypes = {
+  addRecord: PropTypes.func.isRequired,
+  form: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    times: PropTypes.number.isRequired,
+    list: PropTypes.string.isRequired,
+    date_added: PropTypes.string.isRequired,
+    status: PropTypes.bool.isRequired,
+  }).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  form: state.form,
+});
+
+const mapDistpachToProps = {
+  addRecord,
+};
+
+export default connect(mapStateToProps, mapDistpachToProps)(Form);

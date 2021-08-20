@@ -6,10 +6,9 @@ import logo from '../images/logo-white.png';
 import { getUser } from '../redux/actions';
 
 const Home = ({ getUser, user }) => {
-  // localStorage.clear();
-  console.log(localStorage);
-  console.log(localStorage.length);
-  console.log(localStorage.getItem('token'));
+  const history = useHistory();
+  if (localStorage.getItem('token')) history.push('/list');
+  if (user.status === true && user.id !== 0) history.push('/list');
   const showError = () => {
     document.getElementById('login-notification-bad').style.display = 'block';
     setTimeout(() => {
@@ -17,8 +16,6 @@ const Home = ({ getUser, user }) => {
     }, 3000);
   };
   if (user.status === true && user.id === 0) showError();
-  const history = useHistory();
-  if (user.status === true && user.id !== 0) history.push('/list');
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
@@ -54,12 +51,8 @@ const Home = ({ getUser, user }) => {
     }
   };
   const submitForm = (e) => {
-    console.log('enterUser');
-    console.log(e.target.email.value);
-    console.log(e.target.password.value);
     e.preventDefault();
-    const loginInfo = getUser(e.target.email.value, e.target.password.value);
-    console.log(loginInfo);
+    getUser(e.target.email.value, e.target.password.value);
   };
   return (
     <div className="columns login">
