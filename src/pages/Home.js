@@ -12,13 +12,9 @@ const Home = ({ getUser, user }) => {
       document.getElementById('login-notification-bad').style.display = 'none';
     }, 3000);
   };
-  if (user.status === true && user.id === 0) {
-    showError();
-  } else if (user.status === true && user.id !== 0) {
-    document.getElementById('login-notification-good').style.display = 'block';
-    const history = useHistory();
-    history.push('/list');
-  }
+  if (user.status === true && user.id === 0) showError();
+  const history = useHistory();
+  if (user.status === true && user.id !== 0) history.push('/list');
   console.log(user);
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

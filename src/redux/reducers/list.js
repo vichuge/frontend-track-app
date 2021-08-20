@@ -1,9 +1,17 @@
 import { ALL_ELEMENTS } from '../actionTypes';
 
-const list = (state = {}, action) => {
+const initialState = {
+  elements: [],
+  status: false,
+};
+
+const list = (state = initialState, action) => {
   switch (action.type) {
     case ALL_ELEMENTS:
-      return action.payload;
+      return {
+        elements: action.payload,
+        status: true,
+      };
     default:
       return state;
   }
