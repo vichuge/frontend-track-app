@@ -21,7 +21,7 @@ export const getUser = (email, myPassword) => async (dispatch) => {
       const data = {
         id: 0,
         username: 'error',
-        token: 'error',
+        token: '',
         status: false,
       };
       dispatch(login(data));
@@ -29,6 +29,30 @@ export const getUser = (email, myPassword) => async (dispatch) => {
 };
 
 export const getList = (token) => async (dispatch) => {
+  const url = 'https://stormy-headland-20983.herokuapp.com/api/v1/lists';
+  axios.get(url, {
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      console.log(response.data);
+      dispatch(all(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+      const data = {
+        elements: {},
+        status: false,
+      };
+      localStorage.clear();
+      dispatch(login(data));
+      console.log(data);
+    });
+};
+
+export const addRecord = (token) => async (dispatch) => {
   const url = 'https://stormy-headland-20983.herokuapp.com/api/v1/lists';
   axios.get(url, {
     headers: {

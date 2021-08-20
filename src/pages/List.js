@@ -8,22 +8,16 @@ const List = ({
   logout,
   getList,
   list,
-  user,
 }) => {
-  console.log(list.elements);
   const history = useHistory();
-  if (user.status === false) history.push('/');
-  if (list.status === false && user.status === true) getList(user.token);
-  // getList(user.token);
-  const logOut = () => {
-    console.log('logout');
-    logout();
-  };
+  if (localStorage.length === 0) history.push('/logout');
+  if (list.status === false) getList(localStorage.getItem('token'));
+  const logOut = () => logout();
   return (
     <>
       <p>List!</p>
       {list.elements.map((elem) => (
-        <p key={elem.id}>{elem.title}</p>
+        <Link to={`/form/${elem.id}`} key={elem.id}>{elem.title}</Link>
       ))}
       <Link to="/logout" onClick={logOut}>Logout</Link>
     </>
@@ -49,7 +43,6 @@ List.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  user: state.user,
   list: state.list,
 });
 

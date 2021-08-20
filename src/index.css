@@ -7,6 +7,10 @@
   left: 0px;
 }
 
+.notification {
+  border-radius: 0;
+}
+
 #login-notification-bad {
   display: none;
 }
@@ -43,4 +47,12 @@
 
 .red-validation {
   color: #f14668;
+}
+
+#form-notification-bad {
+  display: none;
+}
+
+#form-notification-good {
+  display: none;
 }

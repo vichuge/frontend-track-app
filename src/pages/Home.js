@@ -6,6 +6,10 @@ import logo from '../images/logo-white.png';
 import { getUser } from '../redux/actions';
 
 const Home = ({ getUser, user }) => {
+  // localStorage.clear();
+  console.log(localStorage);
+  console.log(localStorage.length);
+  console.log(localStorage.getItem('token'));
   const showError = () => {
     document.getElementById('login-notification-bad').style.display = 'block';
     setTimeout(() => {
@@ -15,7 +19,6 @@ const Home = ({ getUser, user }) => {
   if (user.status === true && user.id === 0) showError();
   const history = useHistory();
   if (user.status === true && user.id !== 0) history.push('/list');
-  console.log(user);
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
@@ -60,19 +63,19 @@ const Home = ({ getUser, user }) => {
   };
   return (
     <div className="columns login">
+      <div className="notification is-danger" id="login-notification-bad">
+        It looks like you&apos;ve a trouble with your credentials,
+        <strong>
+          would you try again?
+        </strong>
+      </div>
+      <div className="notification is-success" id="login-notification-good">
+        <strong>
+          Done!
+        </strong>
+      </div>
       <div className="column is-flex is-justify-content-center">
         <section className="section">
-          <div className="notification is-danger" id="login-notification-bad">
-            It looks like you&apos;ve a trouble with your credentials,
-            <strong>
-              would you try again?
-            </strong>
-          </div>
-          <div className="notification is-success" id="login-notification-good">
-            <strong>
-              Done!
-            </strong>
-          </div>
           <img src={logo} alt="logo" className="login-logo" />
           <h1 className="title login-title">
             Track water

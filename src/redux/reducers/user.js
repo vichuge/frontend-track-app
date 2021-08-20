@@ -18,8 +18,13 @@ const setTrue = (obj1) => {
 const user = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN:
+      if (action.payload.id !== 0) {
+        localStorage.setItem('id', action.payload.id);
+        localStorage.setItem('token', action.payload.token);
+      }
       return setTrue(action.payload);
     case LOGOUT:
+      localStorage.clear();
       return initialState;
     default:
       return state;
