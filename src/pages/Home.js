@@ -10,6 +10,8 @@ const Home = ({ getUser, user }) => {
   if (localStorage.getItem('token')) history.push('/list');
   if (user.status === true && user.id !== 0) history.push('/list');
   const showError = () => {
+    const btn = document.getElementById('login-button');
+    btn.innerHTML = 'Login';
     document.getElementById('login-notification-bad').style.display = 'block';
     setTimeout(() => {
       document.getElementById('login-notification-bad').style.display = 'none';
@@ -51,69 +53,82 @@ const Home = ({ getUser, user }) => {
     }
   };
   const submitForm = (e) => {
+    const i = document.createElement('i');
+    i.classList.add('fas');
+    i.classList.add('fa-spinner');
+    i.classList.add('fa-pulse');
+    const btn = document.getElementById('login-button');
+    btn.innerHTML = '';
+    btn.appendChild(i);
     e.preventDefault();
     getUser(e.target.email.value, e.target.password.value);
   };
   return (
-    <div className="columns login">
-      <div className="notification is-danger" id="login-notification-bad">
-        It looks like you&apos;ve a trouble with your credentials,
-        <strong>
-          would you try again?
-        </strong>
-      </div>
-      <div className="notification is-success" id="login-notification-good">
-        <strong>
-          Done!
-        </strong>
-      </div>
-      <div className="column is-flex is-justify-content-center">
-        <section className="section">
-          <img src={logo} alt="logo" className="login-logo" />
-          <h1 className="title login-title">
-            Track water
-          </h1>
-          <div className="container">
-            <form onSubmit={submitForm}>
-              <div className="field">
-                <p className="control has-icons-left has-icons-right">
-                  <input onChange={changeEmail} className="input" type="email" id="email" placeholder="Email" required />
-                  <span className="icon is-small is-left">
-                    <i className="fas fa-envelope" />
-                  </span>
-                  <span className="icon is-small is-right">
-                    <i className="" id="email-icon" />
-                  </span>
-                </p>
-              </div>
-              <div className="field">
-                <p className="control has-icons-left has-icons-right">
-                  <input onChange={changePassword} className="input" type="password" id="password" placeholder="Password" required minLength="3" />
-                  <span className="icon is-small is-left">
-                    <i className="fas fa-lock" />
-                  </span>
-                  <span className="icon is-small is-right">
-                    <i className="" id="password-icon" />
-                  </span>
-                </p>
-              </div>
-              <div className="field">
-                <p className="control">
-                  <button type="submit" className="button is-success">
-                    Login
-                  </button>
-                </p>
-              </div>
-            </form>
+    <>
+      <div className="rows login">
+        <div className="row">
+          <div className="notification is-danger" id="login-notification-bad">
+            It looks like you&apos;ve a trouble with your credentials,
+            <strong>
+              would you try again?
+            </strong>
           </div>
-          <div className="container home-info">
-            <p>Credentials:</p>
-            <p>vichuge@mail.com</p>
-            <p>admin1234</p>
+          <div className="notification is-success" id="login-notification-good">
+            <strong>
+              Done!
+            </strong>
           </div>
-        </section>
+        </div>
+        <div className="row">
+          <div className="column is-flex is-justify-content-center">
+            <section className="section">
+              <img src={logo} alt="logo" className="login-logo" />
+              <h1 className="title login-title">
+                Track water
+              </h1>
+              <div className="container">
+                <form onSubmit={submitForm}>
+                  <div className="field">
+                    <p className="control has-icons-left has-icons-right">
+                      <input onChange={changeEmail} className="input" type="email" id="email" placeholder="Email" required />
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-envelope" />
+                      </span>
+                      <span className="icon is-small is-right">
+                        <i className="" id="email-icon" />
+                      </span>
+                    </p>
+                  </div>
+                  <div className="field">
+                    <p className="control has-icons-left has-icons-right">
+                      <input onChange={changePassword} className="input" type="password" id="password" placeholder="Password" required minLength="3" />
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-lock" />
+                      </span>
+                      <span className="icon is-small is-right">
+                        <i className="" id="password-icon" />
+                      </span>
+                    </p>
+                  </div>
+                  <div className="field">
+                    <p className="control">
+                      <button type="submit" className="button is-success" id="login-button">
+                        Login
+                      </button>
+                    </p>
+                  </div>
+                </form>
+              </div>
+              <div className="container home-info">
+                <p>Credentials:</p>
+                <p>vichuge@mail.com</p>
+                <p>admin1234</p>
+              </div>
+            </section>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
