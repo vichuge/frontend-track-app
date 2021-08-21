@@ -1,3 +1,42 @@
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url(./images/HelveticaNeue\ Bold.ttf);
+}
+
+html,
+body,
+#root,
+main {
+  height: 100%;
+  margin: 0;
+}
+
+.wrap {
+  min-height: 100%;
+  margin-bottom: -100px;
+}
+
+.column {
+  padding: 0;
+}
+
+.columns {
+  margin: 0;
+}
+
+footer {
+  height: 100px;
+  position: sticky;
+  bottom: 0;
+  background-color: #313944;
+  padding: 1em 0;
+  width: 100%;
+}
+
+#root {
+  font-family: HelveticaNeue;
+}
+
 .login {
   background-color: #42b5e8;
   position: absolute;
@@ -37,16 +76,48 @@
   border: 3px solid #f14668;
 }
 
-.is-success.input, .is-success.textarea {
+.is-success.input,
+.is-success.textarea {
   border: 3px solid #48c78e;
 }
 
 .green-validation {
-  color: #48c78e
+  color: #48c78e;
 }
 
 .red-validation {
   color: #f14668;
+}
+
+.navbar {
+  background-color: #42b5e8;
+  text-align: center;
+  padding: 1em;
+}
+
+.title {
+  color: white;
+}
+
+.list-columns {
+  margin: 1em 0;
+}
+
+.list-option {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-form {
+  background-color: white;
+}
+
+.columns-form {
+  text-align: center;
+}
+
+.title-form {
+  color: black;
 }
 
 #form-notification-bad {
@@ -55,4 +126,18 @@
 
 #form-notification-good {
   display: none;
+}
+
+.footer-column {
+  text-align: center;
+  color: #90969b;
+  padding-top: 1em;
+}
+
+.footer-column:hover {
+  color: #90969b;
+}
+
+.footer-icon {
+  color: #90969b;
 }

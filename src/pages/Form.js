@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { addRecord } from '../redux/actions';
 import NavBar from '../components/NavBar';
+import Bar from '../components/Bar';
 
 const Form = ({ addRecord, form }) => {
   const history = useHistory();
@@ -38,6 +39,8 @@ const Form = ({ addRecord, form }) => {
       times.className = 'input';
       timesIcon.className = '';
     }
+    const t = document.getElementById('title');
+    t.innerHTML = `Hello ${e.target.value}`;
   };
   const submitForm = (e) => {
     e.preventDefault();
@@ -46,41 +49,49 @@ const Form = ({ addRecord, form }) => {
   };
   return (
     <>
+      <div className="wrap">
+        <Bar title="Add record" />
+        <nav className="navbar nav-form">
+          <h1 className="subtitle">How many cups did you drink?</h1>
+        </nav>
+        <div className="notification is-danger" id="form-notification-bad">
+          It looks like we&apos;ve a problem with the API service&nbsp;
+          <strong>
+            would you try again?
+          </strong>
+        </div>
+        <div className="notification is-success" id="form-notification-good">
+          <strong>
+            Successful!
+          </strong>
+        </div>
+        <h1 className="title" id="title">Title</h1>
+        <div className="columns is-mobile columns-form is-justify-content-center">
+          <div className="column is-half">
+            <form onSubmit={submitForm}>
+              <div className="field">
+                <p className="control has-icons-left has-icons-right">
+                  <input onChange={changeTimes} className="input" type="number" id="times" placeholder="2" required min="1" max="99" />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-glass-whiskey" />
+                  </span>
+                  <span className="icon is-small is-right">
+                    <i className="" id="times-icon" />
+                  </span>
+                </p>
+              </div>
+              <div className="field">
+                <p className="control">
+                  <button type="submit" className="button is-success">
+                    Create record
+                  </button>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
       <NavBar />
-      <div className="notification is-danger" id="form-notification-bad">
-        It looks like we&apos;ve a problem with the API service&nbsp;
-        <strong>
-          would you try again?
-        </strong>
-      </div>
-      <div className="notification is-success" id="form-notification-good">
-        <strong>
-          Successful!
-        </strong>
-      </div>
-      <form onSubmit={submitForm}>
-        <div className="field">
-          <label className="label" htmlFor="times">
-            Cups/glass number you drink
-            <p className="control has-icons-left has-icons-right">
-              <input onChange={changeTimes} className="input" type="number" id="times" placeholder="2" required min="1" max="99" />
-              <span className="icon is-small is-left">
-                <i className="fas fa-glass-whiskey" />
-              </span>
-              <span className="icon is-small is-right">
-                <i className="" id="times-icon" />
-              </span>
-            </p>
-          </label>
-        </div>
-        <div className="field">
-          <p className="control">
-            <button type="submit" className="button is-success">
-              Login
-            </button>
-          </p>
-        </div>
-      </form>
     </>
   );
 };

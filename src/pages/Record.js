@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import Moment from 'moment';
 import { getRecords } from '../redux/actions';
 import NavBar from '../components/NavBar';
+import Bar from '../components/Bar';
 
 const Record = ({
   getRecords,
@@ -16,24 +17,58 @@ const Record = ({
   let day = 0;
   return (
     <>
-      <NavBar />
-      <p>Records!</p>
-      {record.elements.slice(0).reverse().map((elem) => {
-        if (day !== Moment(elem.date_added).format('MMMM DD')) {
-          day = Moment(elem.date_added).format('MMMM DD');
-          return (
-            <>
-              <p>{day}</p>
-              <p key={`rec-${elem.id}`}>{`${elem.times} measures of ${elem.list} on ${Moment(elem.date_added).format('MMMM DD, LT')}`}</p>
-            </>
-          );
-        }
-        return (
-          <>
-            <p key={`rec-${elem.id}`}>{`${elem.times} measures of ${elem.list} on ${Moment(elem.date_added).format('MMMM DD, LT')}`}</p>
-          </>
-        );
-      })}
+      <div className="wrap">
+        <Bar title="Progress" />
+        <div className="columns is-mobile is-justify-content-center">
+          <div className="column">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Cups No.</th>
+                  <th>drink</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Cups No.</th>
+                  <th>drink</th>
+                  <th>Time</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                {record.elements.slice(0).reverse().map((elem) => {
+                  if (day !== Moment(elem.date_added).format('MMMM DD')) {
+                    day = Moment(elem.date_added).format('MMMM DD');
+                    return (
+                      <>
+                        <tr>
+                          <td>{day}</td>
+                          <td>--</td>
+                          <td>--</td>
+                        </tr>
+                        <tr>
+                          <td>{elem.times}</td>
+                          <td>{elem.list}</td>
+                          <td>{Moment(elem.date_added).format('MMMM DD, LT')}</td>
+                        </tr>
+                      </>
+                    );
+                  }
+                  return (
+                    <tr key={elem.id}>
+                      <td>{elem.times}</td>
+                      <td>{elem.list}</td>
+                      <td>{Moment(elem.date_added).format('MMMM DD, LT')}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <NavBar />
+      </div>
     </>
   );
 };
