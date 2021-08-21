@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 const Bar = ({ title }) => (
   <nav className="navbar">
-    <h1 className="title">{title}</h1>
+    <h1 className="title">
+      <i className="fas fa-tint" />
+      &nbsp;
+      {title}
+    </h1>
   </nav>
 );
 
