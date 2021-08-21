@@ -106,6 +106,11 @@ const Home = ({ getUser, user }) => {
               </div>
             </form>
           </div>
+          <div className="container home-info">
+            <p>Credentials:</p>
+            <p>vichuge@mail.com</p>
+            <p>admin1234</p>
+          </div>
         </section>
       </div>
     </div>

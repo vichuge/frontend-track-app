@@ -18,54 +18,52 @@ const Record = ({
   return (
     <>
       <div className="wrap">
-        <Bar title="Progress" />
-        <div className="columns is-mobile is-justify-content-center">
-          <div className="column">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Cups No.</th>
-                  <th>drink</th>
-                  <th>Time</th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th>Cups No.</th>
-                  <th>drink</th>
-                  <th>Time</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                {record.elements.slice(0).reverse().map((elem) => {
-                  if (day !== Moment(elem.date_added).format('MMMM DD')) {
-                    day = Moment(elem.date_added).format('MMMM DD');
-                    return (
-                      <>
-                        <tr>
-                          <td>{day}</td>
-                          <td>--</td>
-                          <td>--</td>
-                        </tr>
-                        <tr>
-                          <td>{elem.times}</td>
-                          <td>{elem.list}</td>
-                          <td>{Moment(elem.date_added).format('MMMM DD, LT')}</td>
-                        </tr>
-                      </>
-                    );
-                  }
-                  return (
-                    <tr key={elem.id}>
-                      <td>{elem.times}</td>
-                      <td>{elem.list}</td>
-                      <td>{Moment(elem.date_added).format('MMMM DD, LT')}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+        <Bar title="Records" />
+        <div className="columns is-mobile is-multiline list-columns">
+          {record.elements.slice(0).reverse().map((elem) => {
+            if (day !== Moment(elem.date_added).fromNow()) {
+              day = Moment(elem.date_added).fromNow();
+              return (
+                <>
+                  <p className="text-record">{day}</p>
+                  <div className="column is-full column-record" key={elem.id}>
+                    <div className="card">
+                      <div className="card-content">
+                        <div className="content">
+                          <div className="columns is-mobile is-justify-content-space-around">
+                            <div className="column">
+                              <p>{Moment(elem.date_added).format('MMM DD HH:mm')}</p>
+                            </div>
+                            <div className="column is-half">
+                              <p className="times-record">{`${elem.list}, ${elem.times}`}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            }
+            return (
+              <div className="column is-full" key={elem.id}>
+                <div className="card">
+                  <div className="card-content">
+                    <div className="content">
+                      <div className="columns is-mobile is-justify-content-space-around">
+                        <div className="column">
+                          <p>{Moment(elem.date_added).format('MMM DD HH:mm')}</p>
+                        </div>
+                        <div className="column is-half">
+                          <p className="times-record">{`${elem.list}, ${elem.times}`}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
         <NavBar />
       </div>

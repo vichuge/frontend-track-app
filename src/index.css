@@ -43,6 +43,12 @@ footer {
   left: 0px;
 }
 
+.home-info {
+  color: white;
+  text-align: center;
+  margin-top: 1em;
+}
+
 .notification {
   border-radius: 0;
 }
@@ -101,10 +107,6 @@ footer {
   color: white;
 }
 
-.list-columns {
-  margin: 1em 0;
-}
-
 .list-option {
   text-decoration: none;
   color: #5b8092;
@@ -142,6 +144,19 @@ footer {
   text-decoration: none;
   color: #5b8092;
   margin-top: 0.5em;
+}
+
+.times-record {
+  text-align: right;
+}
+
+.text-record {
+  padding-left: .75rem;
+  margin: .5em;
+}
+
+.column-record {
+  padding: 0 .75rem;
 }
 
 .footer-column {
