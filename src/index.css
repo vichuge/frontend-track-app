@@ -14,10 +14,7 @@ main {
 .wrap {
   min-height: 100%;
   margin-bottom: -100px;
-}
-
-.column {
-  padding: 0;
+  background-color: #f3f4f6;
 }
 
 .columns {
@@ -25,7 +22,7 @@ main {
 }
 
 footer {
-  height: 100px;
+  height: 103px;
   position: sticky;
   bottom: 0;
   background-color: #313944;
@@ -76,13 +73,18 @@ footer {
   border: 3px solid #f14668;
 }
 
+.is-success,
+.button.is-success {
+  background-color: #97e493;
+}
+
 .is-success.input,
 .is-success.textarea {
-  border: 3px solid #48c78e;
+  border: 3px solid #97e493;
 }
 
 .green-validation {
-  color: #48c78e;
+  color: #97e493;
 }
 
 .red-validation {
@@ -105,7 +107,11 @@ footer {
 
 .list-option {
   text-decoration: none;
-  color: black;
+  color: #5b8092;
+}
+
+.card-content {
+  padding: 1em;
 }
 
 .nav-form {
@@ -117,7 +123,7 @@ footer {
 }
 
 .title-form {
-  color: black;
+  color: #5b8092;
 }
 
 #form-notification-bad {
@@ -128,10 +134,20 @@ footer {
   display: none;
 }
 
+.content-form {
+  margin-top: 3em;
+}
+
+.back-form {
+  text-decoration: none;
+  color: #5b8092;
+  margin-top: 0.5em;
+}
+
 .footer-column {
   text-align: center;
   color: #90969b;
-  padding-top: 1em;
+  padding-top: 0.5em;
 }
 
 .footer-column:hover {

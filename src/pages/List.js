@@ -24,7 +24,7 @@ const List = ({
                 <Link to={`/form/${elem.id}`} className="list-option">
                   <div className="card-content">
                     <div className="content">
-                      <div className="columns">
+                      <div className="columns is-mobile is-justify-content-space-around">
                         <div className="column">
                           <i className={`${elem.icon} fa-2x`} />
                         </div>

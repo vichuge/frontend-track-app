@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { addRecord } from '../redux/actions';
 import NavBar from '../components/NavBar';
 import Bar from '../components/Bar';
@@ -65,8 +65,7 @@ const Form = ({ addRecord, form }) => {
             Successful!
           </strong>
         </div>
-        <h1 className="title" id="title">Title</h1>
-        <div className="columns is-mobile columns-form is-justify-content-center">
+        <div className="columns is-mobile columns-form is-justify-content-center content-form">
           <div className="column is-half">
             <form onSubmit={submitForm}>
               <div className="field">
@@ -88,6 +87,10 @@ const Form = ({ addRecord, form }) => {
                 </p>
               </div>
             </form>
+            <Link to="/list">
+              <i className="fas fa-arrow-left fa-3x back-form" />
+              <p className="back-form">back</p>
+            </Link>
           </div>
         </div>
       </div>
