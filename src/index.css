@@ -85,6 +85,10 @@ footer {
   background-color: #97e493;
 }
 
+.button.is-success:hover {
+  background-color: #97e493;
+}
+
 .is-success.input,
 .is-success.textarea {
   border: 3px solid #97e493;

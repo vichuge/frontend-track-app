@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/frontend-track-app/static/css/main.ffd189de.chunk.css",
-    "main.js": "/frontend-track-app/static/js/main.a72623d7.chunk.js",
-    "main.js.map": "/frontend-track-app/static/js/main.a72623d7.chunk.js.map",
+    "main.css": "/frontend-track-app/static/css/main.be3f53f0.chunk.css",
+    "main.js": "/frontend-track-app/static/js/main.0c42c8be.chunk.js",
+    "main.js.map": "/frontend-track-app/static/js/main.0c42c8be.chunk.js.map",
     "runtime-main.js": "/frontend-track-app/static/js/runtime-main.49c4bd8d.js",
     "runtime-main.js.map": "/frontend-track-app/static/js/runtime-main.49c4bd8d.js.map",
     "static/js/2.e7abc88e.chunk.js": "/frontend-track-app/static/js/2.e7abc88e.chunk.js",
     "static/js/2.e7abc88e.chunk.js.map": "/frontend-track-app/static/js/2.e7abc88e.chunk.js.map",
     "index.html": "/frontend-track-app/index.html",
-    "static/css/main.ffd189de.chunk.css.map": "/frontend-track-app/static/css/main.ffd189de.chunk.css.map",
+    "static/css/main.be3f53f0.chunk.css.map": "/frontend-track-app/static/css/main.be3f53f0.chunk.css.map",
     "static/js/2.e7abc88e.chunk.js.LICENSE.txt": "/frontend-track-app/static/js/2.e7abc88e.chunk.js.LICENSE.txt",
     "static/media/index.css": "/frontend-track-app/static/media/HelveticaNeue Bold.61acdee6.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.49c4bd8d.js",
     "static/js/2.e7abc88e.chunk.js",
-    "static/css/main.ffd189de.chunk.css",
-    "static/js/main.a72623d7.chunk.js"
+    "static/css/main.be3f53f0.chunk.css",
+    "static/js/main.0c42c8be.chunk.js"
   ]
 }

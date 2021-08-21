@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const NavBar = ({ isSelect }) => {
-  console.log(isSelect);
   const options = [
     {
       id: 'list',
@@ -33,7 +32,7 @@ const NavBar = ({ isSelect }) => {
               <Link key={elem.to} to={elem.to} className={`${elem.className} selected-footer`}>
                 <i className={`${elem.iClassName} selected-footer`} />
                 <br />
-                List
+                {elem.id}
               </Link>
             );
           }
@@ -41,7 +40,7 @@ const NavBar = ({ isSelect }) => {
             <Link key={elem.to} to={elem.to} className={elem.className}>
               <i className={elem.iClassName} />
               <br />
-              List
+              {elem.id}
             </Link>
           );
         })}
