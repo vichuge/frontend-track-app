@@ -1,4 +1,4 @@
-import { ADD_FORM, ERROR_RECORD } from '../actionTypes';
+import { FORM_FALSE, ERROR_RECORD, FORM_TRUE } from '../actionTypes';
 
 const initialState = {
   id: 0,
@@ -18,10 +18,12 @@ const setTrue = (obj1) => {
 
 const list = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_FORM:
-      return setTrue(action.payload);
+    case FORM_FALSE:
+      return initialState;
     case ERROR_RECORD:
       return action.payload;
+    case FORM_TRUE:
+      return setTrue(initialState);
     default:
       return state;
   }

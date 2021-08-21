@@ -10,7 +10,7 @@ const Form = ({ addRecord, form }) => {
   const { id } = useParams();
   if (form.status === true) {
     document.getElementById('form-notification-good').style.display = 'block';
-    history.push('/list');
+    history.push('/records');
     // setTimeout(() => {}, 10000);
   }
   if (form.list === 'error') {
@@ -21,7 +21,7 @@ const Form = ({ addRecord, form }) => {
   }
   if (localStorage.length === 0) useHistory().push('/logout');
   const validateTimes = (times) => {
-    const re = /^[1-4][0-9]?$/;
+    const re = /^[1-9][0-9]?$/;
     return re.test(times);
   };
   const changeTimes = (e) => {
@@ -63,7 +63,7 @@ const Form = ({ addRecord, form }) => {
           <label className="label" htmlFor="times">
             Cups/glass number you drink
             <p className="control has-icons-left has-icons-right">
-              <input onChange={changeTimes} className="input" type="number" id="times" placeholder="2" required min="1" max="49" />
+              <input onChange={changeTimes} className="input" type="number" id="times" placeholder="2" required min="1" max="99" />
               <span className="icon is-small is-left">
                 <i className="fas fa-glass-whiskey" />
               </span>

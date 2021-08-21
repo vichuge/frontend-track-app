@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Moment from 'moment';
 import { getRecords } from '../redux/actions';
 import NavBar from '../components/NavBar';
 
@@ -12,14 +13,27 @@ const Record = ({
   const history = useHistory();
   if (localStorage.length === 0) history.push('/logout');
   if (record.status === false) getRecords();
-  console.log(record);
+  let day = 0;
   return (
     <>
       <NavBar />
       <p>Records!</p>
-      {record.elements.map((elem) => (
-        <p key={elem.id}>{`${elem.times} cups of ${elem.list} on ${elem.date_added}`}</p>
-      ))}
+      {record.elements.slice(0).reverse().map((elem) => {
+        if (day !== Moment(elem.date_added).format('MMMM DD')) {
+          day = Moment(elem.date_added).format('MMMM DD');
+          return (
+            <>
+              <p>{day}</p>
+              <p key={`rec-${elem.id}`}>{`${elem.times} measures of ${elem.list} on ${Moment(elem.date_added).format('MMMM DD, LT')}`}</p>
+            </>
+          );
+        }
+        return (
+          <>
+            <p key={`rec-${elem.id}`}>{`${elem.times} measures of ${elem.list} on ${Moment(elem.date_added).format('MMMM DD, LT')}`}</p>
+          </>
+        );
+      })}
     </>
   );
 };
