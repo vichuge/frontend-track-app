@@ -40,7 +40,7 @@ const List = ({
           ))}
         </div>
       </div>
-      <NavBar />
+      <NavBar isSelect="list" />
     </>
   );
 };

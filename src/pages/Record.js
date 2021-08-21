@@ -65,7 +65,7 @@ const Record = ({
             );
           })}
         </div>
-        <NavBar />
+        <NavBar isSelect="records" />
       </div>
     </>
   );

@@ -22,11 +22,9 @@ main {
 }
 
 footer {
-  height: 103px;
   position: sticky;
   bottom: 0;
   background-color: #313944;
-  padding: 1em 0;
   width: 100%;
 }
 
@@ -154,18 +152,19 @@ footer {
 }
 
 .text-record {
-  padding-left: .75rem;
-  margin: .5em;
+  padding-left: 0.75rem;
+  margin: 0.5em;
 }
 
 .column-record {
-  padding: 0 .75rem;
+  padding: 0 0.75rem;
 }
 
 .footer-column {
+  /* height: 103px; */
   text-align: center;
   color: #90969b;
-  padding-top: 0.5em;
+  padding-top: 1.9em;
 }
 
 .footer-column:hover {
@@ -174,4 +173,9 @@ footer {
 
 .footer-icon {
   color: #90969b;
+}
+
+.selected-footer {
+  background-color: #42b5e8;
+  color: white;
 }
