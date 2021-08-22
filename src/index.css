@@ -164,8 +164,11 @@ footer {
   padding: 0 0.75rem;
 }
 
+.record-card-text {
+  padding-bottom: .5em;
+}
+
 .footer-column {
-  /* height: 103px; */
   text-align: center;
   color: #90969b;
   padding-top: 1.9em;

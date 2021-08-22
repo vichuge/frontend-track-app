@@ -30,12 +30,16 @@ const Record = ({
                     <div className="card">
                       <div className="card-content">
                         <div className="content">
-                          <div className="columns is-mobile is-justify-content-space-around">
+                          <div className="columns is-mobile is-justify-content-space-around record-card-text">
                             <div className="column">
                               <p>{Moment(elem.date_added).format('MMM DD HH:mm')}</p>
                             </div>
                             <div className="column is-half">
-                              <p className="times-record">{`${elem.list}, ${elem.times}`}</p>
+                              <p className="times-record">
+                                {elem.times}
+                                &nbsp;
+                                <i className={elem.icon} />
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -50,12 +54,16 @@ const Record = ({
                 <div className="card">
                   <div className="card-content">
                     <div className="content">
-                      <div className="columns is-mobile is-justify-content-space-around">
+                      <div className="columns is-mobile is-justify-content-space-around record-card-text">
                         <div className="column">
                           <p>{Moment(elem.date_added).format('MMM DD HH:mm')}</p>
                         </div>
                         <div className="column is-half">
-                          <p className="times-record">{`${elem.list}, ${elem.times}`}</p>
+                          <p className="times-record">
+                            {elem.times}
+                            &nbsp;
+                            <i className={elem.icon} />
+                          </p>
                         </div>
                       </div>
                     </div>

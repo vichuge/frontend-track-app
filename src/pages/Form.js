@@ -12,7 +12,6 @@ const Form = ({ addRecord, form }) => {
   if (form.status === true) {
     document.getElementById('form-notification-good').style.display = 'block';
     history.push('/records');
-    // setTimeout(() => {}, 10000);
   }
   if (form.list === 'error') {
     document.getElementById('form-notification-bad').style.display = 'block';
