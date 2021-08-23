@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bar return Bar component 1`] = `
+<nav
+  className="navbar"
+>
+  <h1
+    className="title"
+  >
+    <i
+      className="fas fa-tint"
+    />
+     
+    testTitle
+  </h1>
+</nav>
+`;

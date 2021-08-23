@@ -19,7 +19,7 @@ const Form = ({ addRecord, form }) => {
       document.getElementById('form-notification-bad').style.display = 'none';
     }, 3000);
   }
-  if (localStorage.length === 0) useHistory().push('/logout');
+  if (localStorage.length === 0 || localStorage.token === 'undefined') useHistory().push('/logout');
   const validateTimes = (times) => {
     const re = /^[1-9][0-9]?$/;
     return re.test(times);

@@ -16,7 +16,7 @@ const setTrue = (obj1) => {
   return t;
 };
 
-const list = (state = initialState, action) => {
+const form = (state = initialState, action) => {
   switch (action.type) {
     case FORM_FALSE:
       return initialState;
@@ -29,4 +29,4 @@ const list = (state = initialState, action) => {
   }
 };
 
-export default list;
+export default form;

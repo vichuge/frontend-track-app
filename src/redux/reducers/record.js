@@ -7,7 +7,7 @@ const initialState = {
 
 let newElement = '';
 
-const list = (state = initialState, action) => {
+const record = (state = initialState, action) => {
   switch (action.type) {
     case ALL_RECORDS:
       return {
@@ -27,4 +27,4 @@ const list = (state = initialState, action) => {
   }
 };
 
-export default list;
+export default record;

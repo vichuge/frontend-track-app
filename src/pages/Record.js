@@ -12,7 +12,7 @@ const Record = ({
   record,
 }) => {
   const history = useHistory();
-  if (localStorage.length === 0) history.push('/logout');
+  if (localStorage.length === 0 || localStorage.token === 'undefined') history.push('/logout');
   if (record.status === false) getRecords();
   let day = 0;
   return (
