@@ -29,16 +29,16 @@ footer {
 }
 
 #root {
-  font-family: HelveticaNeue;
+  font-family: HelveticaNeue, Arial, Verdana, Tahoma, sans-serif;
 }
 
 .login {
   background-color: #42b5e8;
   position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .home-info {
@@ -165,7 +165,7 @@ footer {
 }
 
 .record-card-text {
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
 }
 
 .footer-column {
