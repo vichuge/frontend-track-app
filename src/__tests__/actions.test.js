@@ -12,30 +12,30 @@ import {
 
 describe('Actions', () => {
   it('return login function', () => {
-    expect(login('userTest')).toEqual({ "payload": "userTest", "type": "LOGIN" });
+    expect(login('userTest')).toEqual({ payload: 'userTest', type: 'LOGIN' });
   });
   it('return logout function', () => {
-    expect(logout()).toEqual({ "type": "LOGOUT" });
+    expect(logout()).toEqual({ type: 'LOGOUT' });
   });
   it('return all function', () => {
-    expect(all('allTest')).toEqual({ "payload": "allTest", "type": "ALL_ELEMENTS" });
+    expect(all('allTest')).toEqual({ payload: 'allTest', type: 'ALL_ELEMENTS' });
   });
   it('return addRec function', () => {
-    expect(addRec('addRecTest')).toEqual({ "payload": "addRecTest", "type": "ADD_RECORD" });
+    expect(addRec('addRecTest')).toEqual({ payload: 'addRecTest', type: 'ADD_RECORD' });
   });
   it('return errorRec function', () => {
-    expect(errorRec('errorRecTest')).toEqual({ "payload": "errorRecTest", "type": "ERROR_RECORD" });
+    expect(errorRec('errorRecTest')).toEqual({ payload: 'errorRecTest', type: 'ERROR_RECORD' });
   });
   it('return listRecords function', () => {
-    expect(listRecords('listRecordsTest')).toEqual({ "payload": "listRecordsTest", "type": "ALL_RECORDS" });
+    expect(listRecords('listRecordsTest')).toEqual({ payload: 'listRecordsTest', type: 'ALL_RECORDS' });
   });
   it('return errorRecords function', () => {
-    expect(errorRecords('errorRecordsTest')).toEqual({ "payload": "errorRecordsTest", "type": "ERROR_RECORDS" });
+    expect(errorRecords('errorRecordsTest')).toEqual({ payload: 'errorRecordsTest', type: 'ERROR_RECORDS' });
   });
   it('return formTrue function', () => {
-    expect(formTrue()).toEqual({ "type": "FORM_TRUE" });
+    expect(formTrue()).toEqual({ type: 'FORM_TRUE' });
   });
   it('return formFalse function', () => {
-    expect(formFalse()).toEqual({ "type": "FORM_FALSE" });
+    expect(formFalse()).toEqual({ type: 'FORM_FALSE' });
   });
 });

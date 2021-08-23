@@ -17,7 +17,7 @@ describe('form data', () => {
   it('return form ERROR_RECORD', () => {
     const f = form(null, {
       type: ERROR_RECORD,
-      payload: 'Error'
+      payload: 'Error',
     });
     expect(f).toBe('Error');
   });
