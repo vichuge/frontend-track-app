@@ -38,8 +38,6 @@ const Form = ({ addRecord, form }) => {
       times.className = 'input';
       timesIcon.className = '';
     }
-    const t = document.getElementById('title');
-    t.innerHTML = `Hello ${e.target.value}`;
   };
   const submitForm = (e) => {
     e.preventDefault();
@@ -93,7 +91,7 @@ const Form = ({ addRecord, form }) => {
           </div>
         </div>
       </div>
-      <NavBar />
+      <NavBar isSelect="list" />
     </>
   );
 };
