@@ -30,7 +30,7 @@
 
 ### Prerequisites
 
-- Text Editor (VSCode is suggested.)
+- Text Editor (VSCode is suggested)
 
 ### Setup
 
