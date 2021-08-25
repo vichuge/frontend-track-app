@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/frontend-track-app/static/css/main.4932e30f.chunk.css",
-    "main.js": "/frontend-track-app/static/js/main.febe3c88.chunk.js",
-    "main.js.map": "/frontend-track-app/static/js/main.febe3c88.chunk.js.map",
+    "main.css": "/frontend-track-app/static/css/main.4778f487.chunk.css",
+    "main.js": "/frontend-track-app/static/js/main.e9be2c32.chunk.js",
+    "main.js.map": "/frontend-track-app/static/js/main.e9be2c32.chunk.js.map",
     "runtime-main.js": "/frontend-track-app/static/js/runtime-main.49c4bd8d.js",
     "runtime-main.js.map": "/frontend-track-app/static/js/runtime-main.49c4bd8d.js.map",
-    "static/js/2.3da3efc8.chunk.js": "/frontend-track-app/static/js/2.3da3efc8.chunk.js",
-    "static/js/2.3da3efc8.chunk.js.map": "/frontend-track-app/static/js/2.3da3efc8.chunk.js.map",
+    "static/js/2.054fff56.chunk.js": "/frontend-track-app/static/js/2.054fff56.chunk.js",
+    "static/js/2.054fff56.chunk.js.map": "/frontend-track-app/static/js/2.054fff56.chunk.js.map",
     "index.html": "/frontend-track-app/index.html",
-    "static/css/main.4932e30f.chunk.css.map": "/frontend-track-app/static/css/main.4932e30f.chunk.css.map",
-    "static/js/2.3da3efc8.chunk.js.LICENSE.txt": "/frontend-track-app/static/js/2.3da3efc8.chunk.js.LICENSE.txt",
+    "static/css/main.4778f487.chunk.css.map": "/frontend-track-app/static/css/main.4778f487.chunk.css.map",
+    "static/js/2.054fff56.chunk.js.LICENSE.txt": "/frontend-track-app/static/js/2.054fff56.chunk.js.LICENSE.txt",
     "static/media/index.css": "/frontend-track-app/static/media/HelveticaNeue Bold.61acdee6.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.49c4bd8d.js",
-    "static/js/2.3da3efc8.chunk.js",
-    "static/css/main.4932e30f.chunk.css",
-    "static/js/main.febe3c88.chunk.js"
+    "static/js/2.054fff56.chunk.js",
+    "static/css/main.4778f487.chunk.css",
+    "static/js/main.e9be2c32.chunk.js"
   ]
 }

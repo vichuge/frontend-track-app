@@ -1,18 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { getList } from '../redux/actions';
 import NavBar from '../components/NavBar';
 import Bar from '../components/Bar';
 
-const List = ({
-  getList,
-  list,
-}) => {
+const List = () => {
+  const dispatch = useDispatch();
+  const reduxList = useSelector((state) => state.list);
+  const [list, setList] = useState({ elements: [] });
   const history = useHistory();
-  if (localStorage.length === 0 || localStorage.token === 'undefined') history.push('/logout');
-  if (list.status === false) getList(localStorage.getItem('token'));
+  useEffect(() => {
+    if (!reduxList.status) dispatch(getList(localStorage.getItem('token')));
+    setList(reduxList);
+    if (localStorage.length === 0 || localStorage.token === 'undefined') history.push('/logout');
+  });
   return (
     <>
       <div className="wrap">
@@ -40,28 +42,9 @@ const List = ({
           ))}
         </div>
       </div>
-      <NavBar isSelect="list" />
+      <NavBar className="navbar-list" isSelect="list" />
     </>
   );
 };
 
-List.propTypes = {
-  getList: PropTypes.func.isRequired,
-  list: PropTypes.shape({
-    elements: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.object,
-    ]),
-    status: PropTypes.bool,
-  }).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  list: state.list,
-});
-
-const mapDistpachToProps = {
-  getList,
-};
-
-export default connect(mapStateToProps, mapDistpachToProps)(List);
+export default List;

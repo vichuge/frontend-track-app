@@ -1,20 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import logo from '../images/logo-white.png';
-import { getUser } from '../redux/actions';
+import { getUser, logout } from '../redux/actions';
 
-const Home = ({ getUser, user }) => {
+const Home = () => {
+  const user = useSelector((state) => state.user);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const history = useHistory();
-  if (localStorage.getItem('token')) history.push('/list');
-  if (user.status === true && user.id !== 0) history.push('/list');
+  const dispatch = useDispatch();
   const showError = () => {
+    dispatch(logout());
     const btn = document.getElementById('login-button');
     btn.innerHTML = 'Login';
-    document.getElementById('login-notification-bad').style.display = 'block';
+    const badNotif = document.getElementById('login-notification-bad');
+    badNotif.style.display = 'block';
     setTimeout(() => {
-      document.getElementById('login-notification-bad').style.display = 'none';
+      if (badNotif) badNotif.style.display = 'none';
     }, 3000);
   };
   if (user.status === true && user.id === 0) showError();
@@ -36,6 +39,7 @@ const Home = ({ getUser, user }) => {
       email.className = 'input';
       emailIcon.className = '';
     }
+    setEmail(e.target.value);
   };
   const changePassword = (e) => {
     const password = document.getElementById('password');
@@ -51,6 +55,7 @@ const Home = ({ getUser, user }) => {
       password.className = 'input';
       passIcon.className = '';
     }
+    setPassword(e.target.value);
   };
   const submitForm = (e) => {
     const i = document.createElement('i');
@@ -61,8 +66,12 @@ const Home = ({ getUser, user }) => {
     btn.innerHTML = '';
     btn.appendChild(i);
     e.preventDefault();
-    getUser(e.target.email.value, e.target.password.value);
+    dispatch(getUser(email, password));
   };
+  useEffect(() => {
+    if (localStorage.getItem('token')) history.push('/list');
+    if (user.status === true && user.id !== 0) history.push('/list');
+  });
   return (
     <>
       <div className="rows login">
@@ -132,22 +141,4 @@ const Home = ({ getUser, user }) => {
   );
 };
 
-Home.propTypes = {
-  getUser: PropTypes.func.isRequired,
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    username: PropTypes.string,
-    token: PropTypes.string,
-    status: PropTypes.bool,
-  }).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  user: state.user,
-});
-
-const mapDistpachToProps = {
-  getUser,
-};
-
-export default connect(mapStateToProps, mapDistpachToProps)(Home);
+export default Home;

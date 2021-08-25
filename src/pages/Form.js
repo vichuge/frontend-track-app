@@ -1,18 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { addRecord } from '../redux/actions';
 import NavBar from '../components/NavBar';
 import Bar from '../components/Bar';
 
-const Form = ({ addRecord, form }) => {
+const Form = () => {
+  const form = useSelector((state) => state.form);
+  const dispatch = useDispatch();
+  const [count, setCount] = useState(0);
   const history = useHistory();
   const { id } = useParams();
-  if (form.status === true) {
-    document.getElementById('form-notification-good').style.display = 'block';
-    history.push('/records');
-  }
   if (form.list === 'error') {
     document.getElementById('form-notification-bad').style.display = 'block';
     setTimeout(() => {
@@ -25,25 +23,31 @@ const Form = ({ addRecord, form }) => {
     return re.test(times);
   };
   const changeTimes = (e) => {
+    setCount(e.target.value);
+  };
+  const submitForm = (e) => {
+    e.preventDefault();
+    dispatch(addRecord(id, count));
+  };
+  useEffect(() => {
     const times = document.getElementById('times');
     const timesIcon = document.getElementById('times-icon');
-    if (validateTimes(e.target.value)) {
+    if (validateTimes(count)) {
       times.className = 'input is-success';
       timesIcon.className = 'fas fa-check green-validation';
     } else {
       times.className = 'input is-danger';
       timesIcon.className = 'fas fa-exclamation-triangle red-validation';
     }
-    if (e.target.value === '') {
+    if (count === 0) {
       times.className = 'input';
       timesIcon.className = '';
     }
-  };
-  const submitForm = (e) => {
-    e.preventDefault();
-    const times = e.target.times.value;
-    addRecord(id, times);
-  };
+    if (form.status === true) {
+      document.getElementById('form-notification-good').style.display = 'block';
+    }
+    if (form.status === true) history.push('/records');
+  });
   return (
     <>
       <div className="wrap">
@@ -96,23 +100,4 @@ const Form = ({ addRecord, form }) => {
   );
 };
 
-Form.propTypes = {
-  addRecord: PropTypes.func.isRequired,
-  form: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    times: PropTypes.number.isRequired,
-    list: PropTypes.string.isRequired,
-    date_added: PropTypes.string.isRequired,
-    status: PropTypes.bool.isRequired,
-  }).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  form: state.form,
-});
-
-const mapDistpachToProps = {
-  addRecord,
-};
-
-export default connect(mapStateToProps, mapDistpachToProps)(Form);
+export default Form;

@@ -1,4 +1,9 @@
-import { ADD_RECORD, ALL_RECORDS, ERROR_RECORDS } from '../actionTypes';
+import {
+  ADD_RECORD,
+  ALL_RECORDS,
+  ERROR_RECORDS,
+  ELEMENTS_FALSE,
+} from '../actionTypes';
 
 const initialState = {
   elements: [],
@@ -22,6 +27,8 @@ const record = (state = initialState, action) => {
       };
     case ERROR_RECORDS:
       return state;
+    case ELEMENTS_FALSE:
+      return initialState;
     default:
       return state;
   }
