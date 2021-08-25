@@ -17,6 +17,12 @@ main {
   background-color: #f3f4f6;
 }
 
+.wrap-record {
+  min-height: 100%;
+  background-color: #f3f4f6;
+  margin-bottom: 1em;
+}
+
 .columns {
   margin: 0;
 }
@@ -156,8 +162,12 @@ footer {
 }
 
 .text-record {
-  padding-left: 0.75rem;
   margin: 0.5em;
+}
+
+.text-record,
+.record-card-text {
+  color: #5b8092;
 }
 
 .column-record {
@@ -168,10 +178,15 @@ footer {
   padding-bottom: 0.5em;
 }
 
+#loading-screen {
+  text-align: center;
+  margin: 13em 0;
+}
+
 .footer-column {
   text-align: center;
   color: #90969b;
-  padding-top: 1.9em;
+  padding-top: 2em;
 }
 
 .footer-column:hover {

@@ -9,10 +9,11 @@ import {
   ERROR_RECORDS,
   FORM_TRUE,
   FORM_FALSE,
+  ELEMENTS_FALSE,
 } from '../actionTypes';
 
 export const login = (user) => ({ type: LOGIN, payload: user });
-export const logout = () => ({ type: LOGOUT });
+export const logoutReducer = () => ({ type: LOGOUT });
 export const all = (all) => ({ type: ALL_ELEMENTS, payload: all });
 export const addRec = (record) => ({ type: ADD_RECORD, payload: record });
 export const errorRec = (record) => ({ type: ERROR_RECORD, payload: record });
@@ -20,6 +21,13 @@ export const listRecords = (records) => ({ type: ALL_RECORDS, payload: records }
 export const errorRecords = (records) => ({ type: ERROR_RECORDS, payload: records });
 export const formTrue = () => ({ type: FORM_TRUE });
 export const formFalse = () => ({ type: FORM_FALSE });
+export const recordsFalse = () => ({ type: ELEMENTS_FALSE });
+
+export const logout = () => (dispatch) => {
+  dispatch(recordsFalse());
+  dispatch(logoutReducer());
+  localStorage.clear();
+};
 
 export const getUser = (email, myPassword) => async (dispatch) => {
   const url = 'https://stormy-headland-20983.herokuapp.com/api/v1/login';
@@ -33,7 +41,7 @@ export const getUser = (email, myPassword) => async (dispatch) => {
     .catch(() => {
       const data = {
         id: 0,
-        username: 'error',
+        username: '',
         token: '',
         status: false,
       };
@@ -53,7 +61,9 @@ export const getList = (token) => async (dispatch) => {
     })
     .catch(() => {
       const data = {
-        elements: {},
+        id: 0,
+        username: '',
+        token: '',
         status: false,
       };
       localStorage.clear();

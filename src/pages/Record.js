@@ -1,56 +1,47 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Moment from 'moment';
 import { getRecords } from '../redux/actions';
 import NavBar from '../components/NavBar';
 import Bar from '../components/Bar';
 
-const Record = ({
-  getRecords,
-  record,
-}) => {
+const Record = () => {
+  const record = useSelector((state) => state.record);
   const history = useHistory();
-  if (localStorage.length === 0 || localStorage.token === 'undefined') history.push('/logout');
-  if (record.status === false) getRecords();
+  const dispatch = useDispatch();
+  if (record.status === false) {
+    dispatch(getRecords());
+  }
   let day = 0;
+  useEffect(() => {
+    if (localStorage.length === 0 || localStorage.token === 'undefined') history.push('/logout');
+    const loading = document.getElementById('loading-screen');
+    loading.style.display = 'block';
+    if (record.status === true) {
+      const loading = document.getElementById('loading-screen');
+      loading.style.display = 'none';
+    }
+  });
   return (
     <>
-      <div className="wrap">
+      <div className="wrap-record">
         <Bar title="Records" />
+        <div id="loading-screen">
+          <i className="fas fa-spinner fa-pulse fa-5x" id="loading-record" />
+        </div>
         <div className="columns is-mobile is-multiline list-columns">
           {record.elements.slice(0).reverse().map((elem) => {
+            let dayText = '';
             if (day !== Moment(elem.date_added).fromNow()) {
               day = Moment(elem.date_added).fromNow();
-              return (
-                <>
-                  <p className="text-record">{day}</p>
-                  <div className="column is-full column-record" key={elem.id}>
-                    <div className="card">
-                      <div className="card-content">
-                        <div className="content">
-                          <div className="columns is-mobile is-justify-content-space-around record-card-text">
-                            <div className="column">
-                              <p>{Moment(elem.date_added).format('MMM DD HH:mm')}</p>
-                            </div>
-                            <div className="column is-half">
-                              <p className="times-record">
-                                {elem.times}
-                                &nbsp;
-                                <i className={elem.icon} />
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </>
-              );
+              dayText = <p className="text-record">{day}</p>;
+            } else {
+              dayText = '';
             }
             return (
-              <div className="column is-full" key={elem.id}>
+              <div className="column is-full text-records" key={`day-${elem.id}`}>
+                {dayText}
                 <div className="card">
                   <div className="card-content">
                     <div className="content">
@@ -73,29 +64,10 @@ const Record = ({
             );
           })}
         </div>
-        <NavBar isSelect="records" />
       </div>
+      <NavBar isSelect="records" />
     </>
   );
 };
 
-Record.propTypes = {
-  getRecords: PropTypes.func.isRequired,
-  record: PropTypes.shape({
-    elements: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.object,
-    ]),
-    status: PropTypes.bool,
-  }).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  record: state.record,
-});
-
-const mapDistpachToProps = {
-  getRecords,
-};
-
-export default connect(mapStateToProps, mapDistpachToProps)(Record);
+export default Record;
