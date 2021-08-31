@@ -79,7 +79,7 @@ const Home = () => {
                 <form onSubmit={submitForm}>
                   <div className="field">
                     <p className="control has-icons-left has-icons-right">
-                      <input onChange={(e) => setEmail(e.target.value)} className={emailClass} type="text" id="email" placeholder="Username" required />
+                      <input onChange={(e) => setEmail(e.target.value)} className={emailClass} type="text" id="email" placeholder="Username" required minLength="3" />
                       <span className="icon is-small is-left">
                         <i className="fas fa-user" />
                       </span>
