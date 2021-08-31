@@ -30,8 +30,8 @@ export const logout = () => (dispatch) => {
 };
 
 const url = 'https://stormy-headland-20983.herokuapp.com/api/v1/';
-const urlSignUp = `${url}register`;
-const urlLogin = `${url}login`;
+const urlSignUp = `${url}users`;
+const urlLogin = `${url}authentication`;
 const urlLists = `${url}lists`;
 const urlRecords = `${url}records`;
 

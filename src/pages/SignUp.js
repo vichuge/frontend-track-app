@@ -23,42 +23,40 @@ const SignUp = () => {
       setErrorMessage('');
     }, 3000);
   };
-  if (user.status === true && user.id === 0) showError();
-  const validateEmail = (email) => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  };
   const submitForm = (e) => {
     setButton(<i className="fas fa-spinner fa-pulse" />);
     e.preventDefault();
     dispatch(createUser(email, password));
   };
   useEffect(() => {
+    if (user.status === true && user.id === 0) showError();
     if (localStorage.getItem('token')) history.push('/list');
     if (user.status === true && user.id !== 0) history.push('/list');
-    if (validateEmail(email)) {
+  }, [user.status]);
+  useEffect(() => {
+    if (email.length >= 3) {
       setEmailClass('input is-success');
       setEmailIconClass('fas fa-check green-validation');
+    } else if (email.length <= 0) {
+      setEmailClass('input');
+      setEmailIconClass('');
     } else {
       setEmailClass('input is-danger');
       setEmailIconClass('fas fa-exclamation-triangle red-validation');
     }
-    if (email === '') {
-      setEmailClass('input');
-      setEmailIconClass('');
-    }
-    if (password.length >= 3) {
+  }, [email]);
+  useEffect(() => {
+    if (password.length >= 6) {
       setPassClass('input is-success');
       setPassIconClass('fas fa-check green-validation');
+    } else if (password.length <= 0) {
+      setPassClass('input');
+      setPassIconClass('');
     } else {
       setPassClass('input is-danger');
       setPassIconClass('fas fa-exclamation-triangle red-validation');
     }
-    if (password === '') {
-      setPassClass('input');
-      setPassIconClass('');
-    }
-  });
+  }, [password]);
   return (
     <>
       <div className="rows login">
@@ -79,9 +77,9 @@ const SignUp = () => {
                 <form onSubmit={submitForm}>
                   <div className="field">
                     <p className="control has-icons-left has-icons-right">
-                      <input onChange={(e) => setEmail(e.target.value)} className={emailClass} type="email" id="email" placeholder="Email" required />
+                      <input onChange={(e) => setEmail(e.target.value)} className={emailClass} type="text" id="email" placeholder="Username" required />
                       <span className="icon is-small is-left">
-                        <i className="fas fa-envelope" />
+                        <i className="fas fa-user" />
                       </span>
                       <span className="icon is-small is-right">
                         <i className={emailIconClass} id="email-icon" />
@@ -90,7 +88,7 @@ const SignUp = () => {
                   </div>
                   <div className="field">
                     <p className="control has-icons-left has-icons-right">
-                      <input onChange={(e) => setPassword(e.target.value)} className={passClass} type="password" id="password" placeholder="Password" required minLength="3" />
+                      <input onChange={(e) => setPassword(e.target.value)} className={passClass} type="password" id="password" placeholder="Password" required minLength="6" />
                       <span className="icon is-small is-left">
                         <i className="fas fa-lock" />
                       </span>

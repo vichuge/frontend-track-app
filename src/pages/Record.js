@@ -10,9 +10,9 @@ const Record = () => {
   const record = useSelector((state) => state.record);
   const history = useHistory();
   const dispatch = useDispatch();
-  if (record.status === false) {
+  useEffect(() => {
     dispatch(getRecords());
-  }
+  }, [record.status]);
   let day = 0;
   useEffect(() => {
     if (localStorage.length === 0 || localStorage.token === 'undefined') history.push('/logout');
