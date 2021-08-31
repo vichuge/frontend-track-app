@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import logo from '../images/logo-white.png';
-import { getUser, logout } from '../redux/actions';
+import { useHistory, Link } from 'react-router-dom';
+import { createUser, logout } from '../redux/actions';
 
-const Home = () => {
+const SignUp = () => {
   const user = useSelector((state) => state.user);
   const [email, setEmail] = useState('');
   const [emailClass, setEmailClass] = useState('input');
@@ -12,14 +11,14 @@ const Home = () => {
   const [password, setPassword] = useState('');
   const [passClass, setPassClass] = useState('input');
   const [passIconClass, setPassIconClass] = useState('');
-  const [button, setButton] = useState('Login');
+  const [button, setButton] = useState('Sign Up');
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
   const showError = () => {
-    setButton('Login');
     dispatch(logout());
-    setErrorMessage('It looks like you\'ve a trouble with your credentials, would you try again?');
+    setButton('Sign Up');
+    setErrorMessage('The email is actually subscribed, would you try anothe one?');
     setTimeout(() => {
       setErrorMessage('');
     }, 3000);
@@ -32,7 +31,7 @@ const Home = () => {
   const submitForm = (e) => {
     setButton(<i className="fas fa-spinner fa-pulse" />);
     e.preventDefault();
-    dispatch(getUser(email, password));
+    dispatch(createUser(email, password));
   };
   useEffect(() => {
     if (localStorage.getItem('token')) history.push('/list');
@@ -73,9 +72,8 @@ const Home = () => {
         <div className="row">
           <div className="column is-flex is-justify-content-center">
             <section className="section">
-              <img src={logo} alt="logo" className="login-logo" />
               <h1 className="title login-title">
-                Track water
+                Sign Up
               </h1>
               <div className="container">
                 <form onSubmit={submitForm}>
@@ -110,14 +108,10 @@ const Home = () => {
                   </div>
                 </form>
               </div>
-              <div className="container home-info">
-                <p>Credentials:</p>
-                <p>vichuge@mail.com</p>
-                <p>admin1234</p>
-              </div>
-              <button type="button" onClick={() => history.push('/signup')} className="button is-large is-fullwidth is-success btn-signup">
-                Sign Up
-              </button>
+              <Link to="/">
+                <i className="fas fa-arrow-left fa-3x back-signup" />
+                <p className="back-signup">back</p>
+              </Link>
             </section>
           </div>
         </div>
@@ -126,4 +120,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default SignUp;

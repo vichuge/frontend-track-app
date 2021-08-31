@@ -29,9 +29,14 @@ export const logout = () => (dispatch) => {
   localStorage.clear();
 };
 
+const url = 'https://stormy-headland-20983.herokuapp.com/api/v1/';
+const urlSignUp = `${url}register`;
+const urlLogin = `${url}login`;
+const urlLists = `${url}lists`;
+const urlRecords = `${url}records`;
+
 export const getUser = (email, myPassword) => async (dispatch) => {
-  const url = 'https://stormy-headland-20983.herokuapp.com/api/v1/login';
-  axios.post(url, {
+  axios.post(urlLogin, {
     username: email,
     password: myPassword,
   })
@@ -49,9 +54,31 @@ export const getUser = (email, myPassword) => async (dispatch) => {
     });
 };
 
+export const createUser = (email, myPassword) => async (dispatch) => {
+  axios.post(urlSignUp, {
+    user: {
+      username: email,
+      password: myPassword,
+    },
+  })
+    .then((response) => {
+      dispatch(login(response.data));
+    })
+    .catch(() => {
+      /* console.log('catch error!');
+      console.log(error);
+      const data = {
+        id: 0,
+        username: '',
+        token: '',
+        status: false,
+      }; */
+      dispatch(getUser(email, myPassword));
+    });
+};
+
 export const getList = (token) => async (dispatch) => {
-  const url = 'https://stormy-headland-20983.herokuapp.com/api/v1/lists';
-  axios.get(url, {
+  axios.get(urlLists, {
     headers: {
       Authorization: token,
     },
@@ -72,7 +99,6 @@ export const getList = (token) => async (dispatch) => {
 };
 
 export const addRecord = (valListId, valTimes) => async (dispatch) => {
-  const url = 'https://stormy-headland-20983.herokuapp.com/api/v1/records';
   const headersData = {
     Authorization: localStorage.getItem('token'),
   };
@@ -81,7 +107,7 @@ export const addRecord = (valListId, valTimes) => async (dispatch) => {
     list_id: valListId,
     user_id: localStorage.getItem('id'),
   };
-  axios.post(url, data, {
+  axios.post(urlRecords, data, {
     headers: headersData,
   })
     .then((response) => {
@@ -101,9 +127,8 @@ export const addRecord = (valListId, valTimes) => async (dispatch) => {
 };
 
 export const getRecords = () => async (dispatch) => {
-  const url = 'https://stormy-headland-20983.herokuapp.com/api/v1/records';
   const token = localStorage.getItem('token');
-  axios.get(url, {
+  axios.get(urlRecords, {
     headers: {
       Authorization: token,
     },

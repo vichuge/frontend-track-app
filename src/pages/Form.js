@@ -8,13 +8,16 @@ import Bar from '../components/Bar';
 const Form = () => {
   const form = useSelector((state) => state.form);
   const dispatch = useDispatch();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState('');
+  const [timesClass, setTimesClass] = useState('input');
+  const [timesIconClass, setTimesIconClass] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
   const { id } = useParams();
   if (form.list === 'error') {
-    document.getElementById('form-notification-bad').style.display = 'block';
+    setErrorMessage('It looks like you\'ve a trouble with your credentials, would you try again?');
     setTimeout(() => {
-      document.getElementById('form-notification-bad').style.display = 'none';
+      setErrorMessage('');
     }, 3000);
   }
   if (localStorage.length === 0 || localStorage.token === 'undefined') useHistory().push('/logout');
@@ -22,31 +25,23 @@ const Form = () => {
     const re = /^[1-9][0-9]?$/;
     return re.test(times);
   };
-  const changeTimes = (e) => {
-    setCount(e.target.value);
-  };
   const submitForm = (e) => {
     e.preventDefault();
     dispatch(addRecord(id, count));
   };
   useEffect(() => {
-    const times = document.getElementById('times');
-    const timesIcon = document.getElementById('times-icon');
-    if (validateTimes(count)) {
-      times.className = 'input is-success';
-      timesIcon.className = 'fas fa-check green-validation';
-    } else {
-      times.className = 'input is-danger';
-      timesIcon.className = 'fas fa-exclamation-triangle red-validation';
-    }
-    if (count === 0) {
-      times.className = 'input';
-      timesIcon.className = '';
-    }
-    if (form.status === true) {
-      document.getElementById('form-notification-good').style.display = 'block';
-    }
     if (form.status === true) history.push('/records');
+    if (validateTimes(count)) {
+      setTimesClass('input is-success');
+      setTimesIconClass('fas fa-check green-validation');
+    } else {
+      setTimesClass('input is-danger');
+      setTimesIconClass('fas fa-exclamation-triangle red-validation');
+    }
+    if (count === '') {
+      setTimesClass('input');
+      setTimesIconClass('');
+    }
   });
   return (
     <>
@@ -55,28 +50,22 @@ const Form = () => {
         <nav className="navbar nav-form">
           <h1 className="subtitle">How many cups did you drink?</h1>
         </nav>
-        <div className="notification is-danger" id="form-notification-bad">
-          It looks like we&apos;ve a problem with the API service&nbsp;
-          <strong>
-            would you try again?
-          </strong>
-        </div>
-        <div className="notification is-success" id="form-notification-good">
-          <strong>
-            Successful!
-          </strong>
-        </div>
+        {errorMessage && (
+          <div className="notification is-danger">
+            {errorMessage}
+          </div>
+        )}
         <div className="columns is-mobile columns-form is-justify-content-center content-form">
           <div className="column is-half">
             <form onSubmit={submitForm}>
               <div className="field">
                 <p className="control has-icons-left has-icons-right">
-                  <input onChange={changeTimes} className="input" type="number" id="times" placeholder="2" required min="1" max="99" />
+                  <input onChange={(e) => setCount(e.target.value)} className={timesClass} type="number" id="times" placeholder="2" required min="1" max="99" />
                   <span className="icon is-small is-left">
                     <i className="fas fa-glass-whiskey" />
                   </span>
                   <span className="icon is-small is-right">
-                    <i className="" id="times-icon" />
+                    <i className={timesIconClass} id="times-icon" />
                   </span>
                 </p>
               </div>
