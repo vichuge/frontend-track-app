@@ -6,9 +6,9 @@ import { getUser, logout } from '../redux/actions';
 
 const Home = () => {
   const user = useSelector((state) => state.user);
-  const [email, setEmail] = useState('');
-  const [emailClass, setEmailClass] = useState('input');
-  const [emailIconClass, setEmailIconClass] = useState('');
+  const [username, setUsername] = useState('');
+  const [usernameClass, setUsernameClass] = useState('input');
+  const [usernameIconClass, setUsernameIconClass] = useState('');
   const [password, setPassword] = useState('');
   const [passClass, setPassClass] = useState('input');
   const [passIconClass, setPassIconClass] = useState('');
@@ -27,7 +27,7 @@ const Home = () => {
   const submitForm = (e) => {
     setButton(<i className="fas fa-spinner fa-pulse" />);
     e.preventDefault();
-    dispatch(getUser(email, password));
+    dispatch(getUser(username, password));
   };
   useEffect(() => {
     if (user.status === true && user.id === 0) showError();
@@ -35,17 +35,17 @@ const Home = () => {
     if (user.status === true && user.id !== 0) history.push('/list');
   }, [user.status]);
   useEffect(() => {
-    if (email.length >= 3) {
-      setEmailClass('input is-success');
-      setEmailIconClass('fas fa-check green-validation');
-    } else if (email.length <= 0) {
-      setEmailClass('input');
-      setEmailIconClass('');
+    if (username.length >= 3) {
+      setUsernameClass('input is-success');
+      setUsernameIconClass('fas fa-check green-validation');
+    } else if (username.length <= 0) {
+      setUsernameClass('input');
+      setUsernameIconClass('');
     } else {
-      setEmailClass('input is-danger');
-      setEmailIconClass('fas fa-exclamation-triangle red-validation');
+      setUsernameClass('input is-danger');
+      setUsernameIconClass('fas fa-exclamation-triangle red-validation');
     }
-  }, [email]);
+  }, [username]);
   useEffect(() => {
     if (password.length >= 6) {
       setPassClass('input is-success');
@@ -79,12 +79,12 @@ const Home = () => {
                 <form onSubmit={submitForm}>
                   <div className="field">
                     <p className="control has-icons-left has-icons-right">
-                      <input onChange={(e) => setEmail(e.target.value)} className={emailClass} type="text" id="email" placeholder="Username" required minLength="3" />
+                      <input onChange={(e) => setUsername(e.target.value)} className={usernameClass} type="text" placeholder="Username" required minLength="3" />
                       <span className="icon is-small is-left">
                         <i className="fas fa-user" />
                       </span>
                       <span className="icon is-small is-right">
-                        <i className={emailIconClass} id="email-icon" />
+                        <i className={usernameIconClass} />
                       </span>
                     </p>
                   </div>
