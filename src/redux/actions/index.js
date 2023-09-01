@@ -29,7 +29,7 @@ export const logout = () => (dispatch) => {
   localStorage.clear();
 };
 
-const url = 'https://stormy-headland-20983.herokuapp.com/api/v1/';
+const url = 'https://back-end-track-app.onrender.com/api/v1/';
 const urlSignUp = `${url}users`;
 const urlLogin = `${url}authentication`;
 const urlLists = `${url}lists`;
