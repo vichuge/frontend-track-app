@@ -141,5 +141,4 @@ Copy `.env.example` to `.env.local` and set `VITE_API_URL=https://host/api/v1`. 
 ## Deployment
 
 `.github/workflows/deploy.yml` builds `dist/` and publishes it to GitHub Pages on every push to `development`. This requires the repo's Pages source to be set to **GitHub Actions**. `vite.config.js` uses `base: './'`, so the build works under any sub-path. `.github/workflows/ci.yml` runs lint, tests and build on PRs.
-
-The legacy `docs/` folder is the old CRA-era Pages output and is ignored by the linters. Do not build into it.
+Build output is never committed: `dist/` is git-ignored and only CI publishes it.

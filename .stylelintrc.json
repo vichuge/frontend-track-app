@@ -5,5 +5,5 @@
     "keyframes-name-pattern": null,
     "declaration-no-important": null
   },
-  "ignoreFiles": ["dist/**", "docs/**", "node_modules/**"]
+  "ignoreFiles": ["dist/**", "node_modules/**"]
 }
