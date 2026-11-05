@@ -1,15 +1,13 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Track water",
+  "name": "Track water — hydration tracker",
+  "description": "Log every drink and see how much water you drink each day.",
   "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
+    { "src": "favicon.ico", "sizes": "64x64 32x32 24x24 16x16", "type": "image/x-icon" },
+    { "src": "icon.png", "sizes": "471x471", "type": "image/png", "purpose": "any" }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#1279b0",
+  "background_color": "#eef3f7"
 }
