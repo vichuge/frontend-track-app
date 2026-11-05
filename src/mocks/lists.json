@@ -1,0 +1,8 @@
+[
+  { "id": 1, "title": "water", "icon": "fas fa-water" },
+  { "id": 2, "title": "coffee", "icon": "fas fa-mug-hot" },
+  { "id": 3, "title": "soda", "icon": "fas fa-glass-whiskey" },
+  { "id": 4, "title": "beer", "icon": "fas fa-beer" },
+  { "id": 5, "title": "wine", "icon": "fas fa-wine-glass-alt" },
+  { "id": 6, "title": "tea", "icon": "fas fa-leaf" }
+]
